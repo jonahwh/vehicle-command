@@ -80,7 +80,7 @@ func main() {
 	if tlsPublicKey, err := protocol.LoadPublicKey(keyFilename); err == nil {
 		if bytes.Equal(tlsPublicKey.Bytes(), skey.PublicBytes()) {
 			fmt.Fprintln(os.Stderr, "It is unsafe to use the same private key for TLS and command authentication.")
-			fmt.Fprintln(ospu.Stderr, "")
+			fmt.Fprintln(os.Stderr, "")
 			fmt.Fprintln(os.Stderr, "Generate a new TLS key for this server.")
 			return
 		}
