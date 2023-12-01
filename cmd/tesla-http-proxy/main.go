@@ -80,7 +80,7 @@ func main() {
 	if tlsPublicKey, err := protocol.LoadPublicKey(keyFilename); err == nil {
 		if bytes.Equal(tlsPublicKey.Bytes(), skey.PublicBytes()) {
 			fmt.Fprintln(os.Stderr, "It is unsafe to use the same private key for TLS and command authentication.")
-			fmt.Fprintln(os.Stderr, "")
+			fmt.Fprintln(ospu.Stderr, "")
 			fmt.Fprintln(os.Stderr, "Generate a new TLS key for this server.")
 			return
 		}
@@ -99,5 +99,5 @@ func main() {
 	// method of your implementation can perform your business logic and then, if the request is
 	// authorized, invoke p.ServeHTTP. Finally, replace p in the below ListenAndServeTLS call with
 	// an object of your newly created type.
-	log.Error("Server stopped: %s", http.ListenAndServeTLS(addr, certFilename, keyFilename, p))
+	log.Error("Server stopped: %s", http.ListenAndServe(addr, p))
 }
